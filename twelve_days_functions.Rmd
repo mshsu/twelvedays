@@ -8,6 +8,21 @@ output:
     css: styles.css
 ---
 
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
+</style>
+<div class = "blue">
+
+Great work! 
+
+You defined the `make_phrase()` function twice. While this does not produce 
+extraneous output, this could cause **major** issues if the functions are 
+different! I am deducting 1 point from your overall score for this oversight. 
+
+**Score** (average score for 7 questions): 3.857
+
+</div>
+
 ```{r setup, include = FALSE, message = FALSE, warning = FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
@@ -61,7 +76,17 @@ return(gift)
 
 ```
 
-Nice work `glue()`-ing the "s" on the end! 
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
+</style>
+<div class = "blue">
+
+Nice work `glue()`-ing the "s" on the end! I also appreciate how you indicated 
+that the "y" needed to come at the end of the word! 
+
+**4**
+
+</div>
 
 *Hint 1:* Note that the gifts on days six and nine have unusual pluralizations.
 You may assume that in other datasets, there will be no special cases besides
@@ -98,6 +123,14 @@ purrr::map_chr(xmas$Gift.Item, pluralize_gift)
 
 ```
 
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
+</style>
+<div class = "blue">
+
+**4** -- Nice! Does your function need `map_chr()` to be used on a vector? 
+
+</div>
 
 ---
 
@@ -144,6 +177,15 @@ make_phrase <- function(num, num_word, item, verb, adjective, location) {
 }
 ```
 
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
+</style>
+<div class = "blue">
+
+**4** -- Nice cases! 
+
+</div>
+
 
 ```{r, message = FALSE, warning = FALSE}
 make_phrase(num = 10, 
@@ -154,6 +196,14 @@ make_phrase(num = 10,
             location = "")
 ```
 
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
+</style>
+<div class = "blue">
+
+**4** -- Great work! 
+
+</div>
 
 
 ```{r, message = FALSE, warning = FALSE}
@@ -194,6 +244,16 @@ make_phrase <- function(num, num_word, item, verb, adjective, location) {
 }
 ```
 
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
+</style>
+<div class = "blue">
+
+**You already defined this function!**
+
+</div>
+
+
 
 # Test Your Function
 
@@ -218,6 +278,14 @@ xmas <- xmas %>%
 
 ```
 
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
+</style>
+<div class = "blue">
+
+**4** -- Great! 
+
+</div>
 
 ---
 
@@ -267,6 +335,19 @@ sing_line <- function(dataset, line, phrase_col){
 }
 ```
 
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
+</style>
+<div class = "blue">
+
+**3** -- Your function assumes that there is a `Day.in.Words` variable in the 
+dataset. I had hoped that if you intended to use this variable, you would have
+extracted it in a similar way to the `phrase_col`. Does the intro phrase need 
+to be repeated? It seems like you just extract the `line` number of the `intro`
+that you want, so why make all 12 lines?
+
+</div>
+
 For example,
 
 
@@ -276,6 +357,15 @@ sing_line(xmas,
           phrase_col = Full.Phrase)
 
 ```
+
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
+</style>
+<div class = "blue">
+
+**4** -- Nice work!
+
+</div>
 
 should return
 
@@ -313,26 +403,24 @@ map_chr(1:12, ~sing_line(xmas2, .x, Full.Phrase)) %>%
 
 ```
 
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
+</style>
+<div class = "blue">
+
+**4** -- Nice work! I like how each gift has its own line! 
+
+</div>
+
 Citation: Rachel's older brother- paste0
 
-## Step Five: Show Me Your Work! 
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
+</style>
+<div class = "blue">
 
-#### Get it on GitHub
+`paste0()` does the same thing as `str_c()`!!!
 
-Once you are done with all the functions, make sure you have **pushed** your
-work to GitHub.
+</div>
 
-Make sure your repository contains your completed RMarkdown document and
-knitted HTML. 
-
-- Your HTML should **only** show the code for your functions and output from 
-testing / verifying that your functions perform as they should. 
-
-__If you used GitHub to store your work:__
-
-Submit the link to your GitHub repository in the Lab 8 assignment portal. 
-
-__If you downloaded the compressed folder and did not use GitHub:__
-
-Submit **both** your RMarkdown file and knitted HTML file
 
