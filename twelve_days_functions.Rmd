@@ -13,13 +13,13 @@ div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 10px;}
 </style>
 <div class = "blue">
 
-Great work! 
+Great work! You have no revisions! 
 
 You defined the `make_phrase()` function twice. While this does not produce 
 extraneous output, this could cause **major** issues if the functions are 
 different! I am deducting 1 point from your overall score for this oversight. 
 
-**Score** (average score for 7 questions): 3.857
+**Score** (average score for 7 questions): 3.714
 
 </div>
 
