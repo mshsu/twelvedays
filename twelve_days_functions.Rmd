@@ -61,6 +61,8 @@ return(gift)
 
 ```
 
+Nice work `glue()`-ing the "s" on the end! 
+
 *Hint 1:* Note that the gifts on days six and nine have unusual pluralizations.
 You may assume that in other datasets, there will be no special cases besides
 these types.
