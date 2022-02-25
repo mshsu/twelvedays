@@ -60,7 +60,12 @@ try it out if you want!**
 pluralize_gift <- function(gift){
 
 gift <- gift %>%
-  str_replace()
+  str_replace("y$", "ie") %>%
+  str_replace("oose$", "eese")
+
+gift <- if_else(!str_detect(gift, "eese$"),
+                str_c(gift, "s"),
+                gift)
 
 return(gift)
 
@@ -90,7 +95,7 @@ purrr::map_chr(xmas$Gift.Item, pluralize_gift)
 Write a function called `make_phrase` that takes as input the necessary information, 
 and returns a phrase.  For example, 
 
-```{r}
+```{r eval=FALSE}
 make_phrase(num = 10, 
             num_word = "ten", 
             item = "lords", 
@@ -110,13 +115,16 @@ make_phrase <- function(num, num_word, item, verb, adjective, location) {
   
   ## Step 1: Replace NAs with blank strings
   verb <- str_replace_na(verb, "")
+  adjective <- str_replace_na(adjective, "")
+  location <- str_replace_na(location, "")
   
   ## Step 2: If the day is larger than 1, the items need pluralized! 
-  
+  item <- if_else(num > 1, pluralize_gift(item), item)
   ## Step 3: If the word starts with a vowel, add "an" to the beginning
-  
+  num_word <- if_else(num == 1, "a", num_word)
+  item <- if_else(str_detect(item, "^[aeiou]"), str_c("an ", item), item)
   ## Step 4:" Glue all of the pieces together! 
-
+  return(str_squish(str_c(num_word, adjective, item, verb, location, sep = " ")))
 }
 ```
 
@@ -166,8 +174,8 @@ Write a function called `sing_line()` that takes as input:
 
 For example,
 
-```{r}
-sing_line(xmas, 2, Full.Phrase)
+```{r eval=FALSE}
+sing_line(xmas2, 2, Full.Phrase)
 ```
 
 should return
@@ -188,25 +196,30 @@ column names as arguments to a function.  Don't delete that line of code!
 # Arguments -- phrase_col -- The variable name for the column in the dataset that contains the gift phrases
 # Return -- A string singing the line of the song with all gifts for the given day.
 
-sing_day <- function(dataset, line, phrase_col){
+sing_line <- function(dataset, num, phrase_col){
   
   # Step 1: Setup the intro line
+  word <- c("first", "second", "third", "fourth", "fifth", "sixth", "seventh",
+            "eighth", "ninth", "tenth", "eleventh", "twelfth")
   
-  num_word <- ____
+  num_word <- word[num]
   
-  intro <- glue::glue("On the {num_word} day of Christmas")
+  intro <- glue::glue("On the {num_word} day of Christmas, my true love sent to me:")
   
   # Step 2: Sing the gift phrases
 
-    phrases <- dataset %>% 
-      pull( {{phrase_col}} )
-
-  ????
-    
+  phrases <- dataset %>% 
+    pull( {{phrase_col}} )
+  lyric <- phrases[1:num]
+  
   ## put it together
-    
-  ????
-
+  lyric[num + 1] <- intro
+  if (length(lyric) > 2) {
+    lyric[2] <- str_c(lyric[2], " and")
+  }
+  lyric <- lyric[(num + 1):1]
+  
+  return(str_c(lyric, collapse = " "))
 }
 
 ```
@@ -214,7 +227,7 @@ sing_day <- function(dataset, line, phrase_col){
 ### A Small Test
 
 ```{r}
-xmas %>% 
+xmas2 %>% 
 sing_line(num = 2, phrase_col = Full.Phrase)
 
 ```
